@@ -2,14 +2,19 @@
 # as well as the fullscreen videos folder
 
 # import the JDK to run Carolina
-FROM openjdk AS Carolina
+FROM openjdk
+
+# set the working directory
+WORKDIR /crg
 
 # copy the CRG source into the image
-ADD crg /opt/crg
+ADD . /crg
+
+EXPOSE 8000
 
 # set the path exports for the logos and videos
-VOLUME [ "/opt/crg/html/images/fullscreen", "/opt/crg/html/images/sponsor_banner", "/opt/crg/html/images/teamlogo", "/opt/crg/html/videos/fullscreen" ]
+VOLUME [ "/crg/html/images/fullscreen", "/crg/html/images/sponsor_banner", "/crg/html/images/teamlogo", "/crg/html/videos/fullscreen" ]
 
-# set the image entrypoint
-ENTRYPOINT 
+# set the startup command
+CMD ["/crg/scoreboard-Linux.sh"]
 
