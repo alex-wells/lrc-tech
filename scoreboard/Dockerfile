@@ -13,5 +13,3 @@ VOLUME [ "/opt/crg/html/images/fullscreen", "/opt/crg/html/images/sponsor_banner
 # set the image entrypoint
 ENTRYPOINT 
 
-
-# build the container for Multicast
