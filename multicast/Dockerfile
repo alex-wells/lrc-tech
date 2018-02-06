@@ -4,7 +4,7 @@
 FROM debian:stable
 
 # install buildtools for the native extension support
-RUN apt-get update && apt-get install -y build-essential apt-utils curl libavahi-compat-libdnssd-dev
+RUN apt-get update && apt-get install -y build-essential apt-utils curl libavahi-compat-libdnssd-dev sudo
 
 # install nodesource binary distribution
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
@@ -16,13 +16,14 @@ RUN npm install npm --global
 WORKDIR /multicast
 
 # install multicast
-RUN sudo npm i multicast -g
+RUN npm i multicast
 
 # set up multicast
-RUN /usr/bin/multicast config
+RUN ln -s /multicast/node_modules/multicast/index.js /multicast/multicast
+ADD config /multicast/node_modules/multicast/.config
 
 EXPOSE 3944
 
 # set the startup command
-CMD ["/usr/bin/multicast start"]
+ENTRYPOINT ["/multicast/multicast", "start"]
 

@@ -1,0 +1,7 @@
+{ mongoHost: 'mongodb',
+  mongoPort: 27017,
+  mongoUsername: '',
+  mongoPassword: '',
+  mongoAuthDB: 'admin',
+  appId: '18125444'
+}
